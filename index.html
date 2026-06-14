@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stress Detection Web App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        body {
+            background-image: url("{{ url_for('static', filename='image.png') }}");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+        h2 {
+            color: white;
+        }
+        form {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            display: inline-block;
+            margin: 20px;
+        }
+        .prediction-result {
+            font-size: 20px;
+            color: black;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 10px;
+            border-radius: 10px;
+            display: inline-block;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Stress Detection Web App</h2>
+    
+    <!-- File Upload Form -->
+    <form action="/predict" method="post" enctype="multipart/form-data">
+        <h3>Upload CSV File</h3>
+        <input type="file" name="file" required>
+        <button type="submit">Upload & Predict</button>
+    </form>
+
+    {% if prediction %}
+    <div class="prediction-result">
+        Prediction: {{ prediction }}
+    </div>
+    {% endif %}
+</body>
+</html>
+
